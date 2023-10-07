@@ -1,0 +1,4 @@
+installed cors
+removed static links
+changed clients
+adding async function in client to get gifts
