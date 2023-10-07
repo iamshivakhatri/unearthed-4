@@ -48,7 +48,7 @@ const CreateGift = () => {
 
        fetch('http://localhost:3001/gifts', options)
 
-       navigate('/')
+       window.location = '/'
 
     }
 

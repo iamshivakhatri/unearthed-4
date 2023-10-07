@@ -22,7 +22,7 @@ const App = () => {
       const data = await response.json();
       setGifts(data);
   
-    };
+    }
 
     fetchGifts();
   }, []);

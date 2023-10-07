@@ -1,8 +1,15 @@
 import {useState, useEffect} from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import './EditGift.css'
 
+
 const EditGift = () => {
+
+    const date = new Date()
+    let day = date.getDate()
+    let month = date.getMonth() + 1
+    let year = date.getFullYear()
+    let currentDate = year + '-' + month + '-' + day
 
     const { id } = useParams()
     const [gift, setGift] = useState({
@@ -13,7 +20,7 @@ const EditGift = () => {
         image: '',
         description: '',
         submittedby: '', 
-        submittedon: ''
+        submittedon: currentDate
     })
 
     useEffect(() => {
@@ -39,14 +46,26 @@ const EditGift = () => {
     
     const updateGift = (event) => {
         event.preventDefault()
+        const options = {
+            method : 'PATCH',
+            headers : {
+                'Content-Type': 'application/json'
+            },
+            body : JSON.stringify(gift)
+        }
 
+        fetch(`http://localhost:3001/gifts/${id}`, options)
+        window.location = '/'
         
     }
 
     const deleteGift = (event) => {
         event.preventDefault()
-
-        
+        const  options = {
+            method: 'DELETE',
+        }
+        fetch(`http://localhost:3001/gifts/${id}`, options)
+        window.location = '/'
     }
 
     return (
